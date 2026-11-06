@@ -1,0 +1,85 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router2
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet6/0
+ ip address 192.168.2.254 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface FastEthernet7/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface FastEthernet8/0
+ ip address 30.30.30.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet9/0
+ ip address 20.20.20.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+router ospf 1
+ router-id 3.3.3.3
+ log-adjacency-changes
+ network 30.30.30.0 0.0.0.3 area 0
+ network 20.20.20.0 0.0.0.3 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

@@ -1,0 +1,74 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router1
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet8/0
+ ip address 10.10.10.254 255.255.255.0
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface FastEthernet9/0
+ ip address 212.18.93.2 255.255.255.252
+ ip nat outside
+ duplex auto
+ speed auto
+!
+router rip
+ network 10.0.0.0
+ network 212.18.93.0
+!
+ip nat inside source static tcp 10.10.10.1 80 212.18.93.2 8080 
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
